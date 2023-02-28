@@ -12,8 +12,13 @@ public class UsuarioService {
     @Autowired
     public UsuarioRepository usuarioRepository;
 
-    public void createUsuario(Usuario usuario){
-        usuarioRepository.save(usuario);
+    public Usuario novoUsuario(Usuario usuario) {
+        if(usuario == null
+                || usuario.getNome() == null
+                || usuario.getSenha() == null) {
+            throw new IllegalArgumentException("Nome e senha inválidos!");
+        }
+        return usuarioRepository.save(usuario);
     }
     public List<Usuario> listarUsuarios(){
         return usuarioRepository.findAll();
