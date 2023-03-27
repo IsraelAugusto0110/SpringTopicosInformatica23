@@ -29,6 +29,7 @@ public class AnotacaoService implements IAnotacaoService {
         if (anotacao.getDataHora()  == null){
             anotacao.setDataHora(LocalDateTime.now());
         }
+        anotacao.setUsuario(usuario.get());
         return anotacaoRepository.save(anotacao);
     }
 
