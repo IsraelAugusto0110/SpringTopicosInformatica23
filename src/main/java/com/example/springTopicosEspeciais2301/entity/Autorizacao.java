@@ -20,8 +20,7 @@ public class Autorizacao {
     @JsonIgnore
     private List<Usuario> usuarios;
 
-<<<<<<< HEAD
-=======
+
     public Autorizacao() {
         // Do nothing
     }
@@ -30,7 +29,6 @@ public class Autorizacao {
         setNome(nome);
     }
 
->>>>>>> 5c18c87fc9711f11a26e305574a56b1896180de5
     public Long getId() {
         return id;
     }
@@ -47,8 +45,7 @@ public class Autorizacao {
         this.nome = nome;
     }
 
-<<<<<<< HEAD
-=======
+
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -56,5 +53,5 @@ public class Autorizacao {
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
->>>>>>> 5c18c87fc9711f11a26e305574a56b1896180de5
+
 }
