@@ -25,4 +25,9 @@ public class MedicaoController {
     public List<Medicao> buscarTodas(){
         return iMedicaoService.buscarTodas();
     }
+
+    @GetMapping(value = "/id/{medicao}")
+    public Medicao buscarporId(@PathVariable("medicao") Long id){
+        return iMedicaoService.buscarPorId(id);
+    }
 }
