@@ -36,7 +36,7 @@ public class Usuario {
     }
 
     public Usuario() {
-        // Faz nada
+
     }
 
     public Long getId() {

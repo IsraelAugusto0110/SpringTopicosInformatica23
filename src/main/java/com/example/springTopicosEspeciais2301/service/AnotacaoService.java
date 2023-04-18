@@ -13,27 +13,27 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class AnotacaoService implements IAnotacaoService {
-    @Autowired
-    public UsuarioRepository usuarioRepository;
-    @Autowired
-    public AnotacaoRepository anotacaoRepository;
-    @Transactional
-    public Anotacao novaAnotacao(Anotacao anotacao){
-        Long idUsuario = anotacao.getUsuario().getId();
-        Optional <Usuario> usuario = usuarioRepository.findById(idUsuario);
-        if(usuario.isEmpty()){
-            throw new UsuarioNaoEncontradoException("Usuário não encontrado");
-        }
-        if (anotacao.getDataHora()  == null){
-            anotacao.setDataHora(LocalDateTime.now());
-        }
-        anotacao.setUsuario(usuario.get());
-        return anotacaoRepository.save(anotacao);
-    }
 
-    public List<Anotacao> buscarTodas(){
+@Service
+public class AnotacaoService {
+
+    @Autowired
+    private AnotacaoRepository anotacaoRepository;
+
+    public List<Anotacao> listarRegistros(){
         return anotacaoRepository.findAll();
     }
+
+    public Anotacao cadastrarTrabalho(Anotacao trabalho){
+        return anotacaoRepository.save(trabalho);
+    }
+
+    public Anotacao buscarPorId(Long id) {
+        Optional<Anotacao> anotacaoOp = anotacaoRepository.findById(id);
+        if(anotacaoOp.isPresent()) {
+            return anotacaoOp.get();
+        }
+        throw new UsuarioNaoEncontradoException("Id inválido!");
+    }
+
 }
