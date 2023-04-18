@@ -1,9 +1,8 @@
 package com.example.springTopicosEspeciais2301.service;
 
-import org.springframework.stereotype.Service;
-
-import java.util.stream.Collectors;
-
+import com.example.springTopicosEspeciais2301.entity.Usuario;
+import com.example.springTopicosEspeciais2301.entity.Autorizacao;
+import com.example.springTopicosEspeciais2301.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,9 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.gov.sp.fatec.springtopicos20231.entity.Autorizacao;
-import br.gov.sp.fatec.springtopicos20231.entity.Usuario;
-import br.gov.sp.fatec.springtopicos20231.repository.UsuarioRepository;
+import java.util.stream.Collectors;
+
 
 @Service
 public class SegurancaService implements UserDetailsService {
