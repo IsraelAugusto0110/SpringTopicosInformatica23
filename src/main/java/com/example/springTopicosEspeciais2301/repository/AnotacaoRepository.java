@@ -9,11 +9,12 @@ import java.util.List;
 public interface AnotacaoRepository extends JpaRepository<Anotacao, Long> {
     public List<Anotacao> findByTextoContains(String texto);
 
-    @Query("select a from tra_trabalho a where a.texto like %?6%")
+    @Query("select a from Anotacao a where a.texto like %?1%")
     public List<Anotacao> buscarPorTexto(String texto);
 
-    public default List<Anotacao> findByUsuarioNome(String nomeUsuario) {
-        return null;
-    }
+    public List<Anotacao> findByUsuarioNome(String nomeUsuario);
+
+    @Query("select a from Anotacao a join a.usuario u where u.nome = ?1")
+    public List<Anotacao> buscarPorNomeUsuario(String nomeUsuario);
 
 }

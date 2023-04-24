@@ -4,23 +4,22 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="tra_trabalho")
+@Table(name="ant_anotacao")
 public class Anotacao {
-    @Column(name = "trab_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ant_id")
     private Long id;
-    @Column(name = "tra_titulo")
-    private String texto;
-    @Column(name = "tra_data_hora_entrega")
-    private LocalDateTime dataHora;
-    @Column(name = "tra_descricao")
-    private String texStringto;
-    @Column(name = "tra_grupo")
-    private String getTexStringto;
-    @Column(name = "tra_justificativa")
-    private String string;
 
+    @Column(name = "ant_texto")
+    private String texto;
+
+    @Column(name = "ant_data_hora")
+    private LocalDateTime dataHora;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ant_usr_id")
+    private Usuario usuario;
 
     public Long getId() {
         return id;
@@ -44,6 +43,14 @@ public class Anotacao {
 
     public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
 
