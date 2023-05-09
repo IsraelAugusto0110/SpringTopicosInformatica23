@@ -11,4 +11,8 @@ create table ant_anotacao (
   foreign key ant_usr_fk (ant_usr_id) references usr_usuario(usr_id)
 );
 
-insert into ant_anotacao(ant_texto, ant_usr_id) values ('Teste', 1);
+insert into ant_anotacao(ant_texto, ant_usr_id) values ('Teste admin 1', 1);
+insert into ant_anotacao(ant_texto, ant_usr_id) values ('Teste admin 2', 1);
+insert into ant_anotacao(ant_texto, ant_usr_id) values ('Teste user 1', 2);
+insert into ant_anotacao(ant_texto, ant_usr_id) values ('Teste test 1', 3);
+insert into ant_anotacao(ant_texto, ant_usr_id) values ('Teste test 2', 3);

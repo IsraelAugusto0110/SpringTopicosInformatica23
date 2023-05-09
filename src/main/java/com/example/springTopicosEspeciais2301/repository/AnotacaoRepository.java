@@ -1,5 +1,6 @@
 package com.example.springTopicosEspeciais2301.repository;
 
+import com.example.springTopicosEspeciais2301.dto.AnotacaoUsuarioDTO;
 import com.example.springTopicosEspeciais2301.entity.Anotacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +18,7 @@ public interface AnotacaoRepository extends JpaRepository<Anotacao, Long> {
     @Query("select a from Anotacao a join a.usuario u where u.nome = ?1")
     public List<Anotacao> buscarPorNomeUsuario(String nomeUsuario);
 
+    @Query("select new br.gov.sp.fatec.springtopicos20231.dto.AnotacaoUsuarioDTO(u.nome, count(a)) " +
+            "from Anotacao a join a.usuario u group by u.nome")
+    public List<AnotacaoUsuarioDTO> quantidadeAnotacoesPorUsuario();
 }

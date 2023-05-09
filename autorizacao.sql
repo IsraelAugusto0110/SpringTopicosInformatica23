@@ -17,5 +17,13 @@ create table uau_usuario_autorizacao (
 
 insert into aut_autorizacao (aut_nome)
     values ('ROLE_ADMIN');
+insert into aut_autorizacao (aut_nome)
+    values ('ROLE_USER');
+
+
 insert into uau_usuario_autorizacao (usr_id, aut_id)
     values (1, 1);
+insert into uau_usuario_autorizacao (usr_id, aut_id)
+    values (2, 2);
+insert into uau_usuario_autorizacao (usr_id, aut_id)
+    values (3, 2);

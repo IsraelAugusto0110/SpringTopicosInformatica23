@@ -1,8 +1,8 @@
 package com.example.springTopicosEspeciais2301.service;
 
+import com.example.springTopicosEspeciais2301.dto.AnotacaoUsuarioDTO;
 import com.example.springTopicosEspeciais2301.entity.Anotacao;
 import com.example.springTopicosEspeciais2301.entity.Usuario;
-import com.example.springTopicosEspeciais2301.exception.UsuarioNaoEncontradoException;
 import com.example.springTopicosEspeciais2301.repository.AnotacaoRepository;
 import com.example.springTopicosEspeciais2301.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +15,13 @@ import java.util.Optional;
 
 
 @Service
-public class AnotacaoService {
+public class AnotacaoService implements IAnotacaoService {
 
-    @Autowired
-    private AnotacaoRepository anotacaoRepo;
     @Autowired
     private UsuarioRepository usuarioRepo;
 
-    public List<Anotacao> listarRegistros(){
-        return anotacaoRepo.findAll();
-    }
+    @Autowired
+    private AnotacaoRepository anotacaoRepo;
 
     @Transactional
     public Anotacao novaAnotacao(Anotacao anotacao) {
@@ -40,12 +37,13 @@ public class AnotacaoService {
         return anotacaoRepo.save(anotacao);
     }
 
-    public Anotacao buscarPorId(Long id) {
-        Optional<Anotacao> anotacaoOp = anotacaoRepo.findById(id);
-        if(anotacaoOp.isPresent()) {
-            return anotacaoOp.get();
-        }
-        throw new UsuarioNaoEncontradoException("Id inválido!");
+    public List<Anotacao> buscarTodas() {
+        return anotacaoRepo.findAll();
+    }
+
+    @Override
+    public List<AnotacaoUsuarioDTO> quantidadeAnotacoesPorUsuario() {
+        return anotacaoRepo.quantidadeAnotacoesPorUsuario();
     }
 
 }
