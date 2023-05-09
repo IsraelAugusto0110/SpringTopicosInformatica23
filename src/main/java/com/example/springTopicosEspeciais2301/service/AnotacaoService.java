@@ -18,18 +18,30 @@ import java.util.Optional;
 public class AnotacaoService {
 
     @Autowired
-    private AnotacaoRepository anotacaoRepository;
+    private AnotacaoRepository anotacaoRepo;
+    @Autowired
+    private UsuarioRepository usuarioRepo;
 
     public List<Anotacao> listarRegistros(){
-        return anotacaoRepository.findAll();
+        return anotacaoRepo.findAll();
     }
 
-    public Anotacao cadastrarTrabalho(Anotacao trabalho){
-        return anotacaoRepository.save(trabalho);
+    @Transactional
+    public Anotacao novaAnotacao(Anotacao anotacao) {
+        Long idUsuario = anotacao.getUsuario().getId();
+        Optional<Usuario> usuarioOp = usuarioRepo.findById(idUsuario);
+        if(usuarioOp.isEmpty()) {
+            throw new IllegalArgumentException("Usuário não existe!");
+        }
+        if(anotacao.getDataHora() == null) {
+            anotacao.setDataHora(LocalDateTime.now());
+        }
+        anotacao.setUsuario(usuarioOp.get());
+        return anotacaoRepo.save(anotacao);
     }
 
     public Anotacao buscarPorId(Long id) {
-        Optional<Anotacao> anotacaoOp = anotacaoRepository.findById(id);
+        Optional<Anotacao> anotacaoOp = anotacaoRepo.findById(id);
         if(anotacaoOp.isPresent()) {
             return anotacaoOp.get();
         }
