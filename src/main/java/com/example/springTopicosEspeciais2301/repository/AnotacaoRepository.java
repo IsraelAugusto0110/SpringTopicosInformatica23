@@ -21,4 +21,6 @@ public interface AnotacaoRepository extends JpaRepository<Anotacao, Long> {
     @Query("select new com.example.springTopicosEspeciais2301.dto.AnotacaoUsuarioDTO(u.nome, count(a)) " +
             "from Anotacao a join a.usuario u group by u.nome")
     public List<AnotacaoUsuarioDTO> quantidadeAnotacoesPorUsuario();
+
+    //
 }
