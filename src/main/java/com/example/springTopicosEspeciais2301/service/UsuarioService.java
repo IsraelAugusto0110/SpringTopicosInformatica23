@@ -8,7 +8,7 @@ import com.example.springTopicosEspeciais2301.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.access.prepost.PreAuthorize;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class UsuarioService implements IUsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+
     public List<Usuario> buscarTodos(){
         return usuarioRepository.findAll();
     }
